@@ -104,6 +104,6 @@ La API ofrece las siguientes funcionalidades:
 
 ## Licencia
 
-Este proyecto está bajo la [licencia MIT](LICENSE).
+Este proyecto está bajo la [licencia GPL3](LICENSE).
 
 ---
