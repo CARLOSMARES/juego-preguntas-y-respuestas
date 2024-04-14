@@ -11,7 +11,6 @@ El repositorio de este proyecto se encuentra en [GitHub](https://github.com/CARL
 ## Requisitos
 
 - [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
 
 ## Configuración
 
@@ -22,15 +21,7 @@ El repositorio de este proyecto se encuentra en [GitHub](https://github.com/CARL
     cd juego-preguntas-y-respuestas
     ```
 
-2. Crea un archivo `.env` en la raíz del proyecto para configurar las variables de entorno necesarias:
-
-    ```shell
-    cp .env.example .env
-    ```
-
-    Edita el archivo `.env` con las configuraciones necesarias para tu entorno, como la URI de MongoDB y las variables de entorno para el backend.
-
-3. Construye e inicia los contenedores utilizando Docker Compose:
+2. Construye e inicia los contenedores utilizando Docker Compose:
 
     ```shell
     docker-compose up --build
@@ -38,7 +29,7 @@ El repositorio de este proyecto se encuentra en [GitHub](https://github.com/CARL
 
     Esto construirá e iniciará los contenedores para el frontend, backend y la base de datos.
 
-4. Abre tu navegador web y accede a `http://localhost:4200` para ver la aplicación en funcionamiento.
+3. Abre tu navegador web y accede a `http://localhost:4200` para ver la aplicación en funcionamiento.
 
 ## Estructura del proyecto
 
