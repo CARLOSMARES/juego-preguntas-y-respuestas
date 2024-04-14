@@ -83,7 +83,3 @@ Si deseas contribuir a este proyecto, sigue estos pasos:
 ## Licencia
 
 Este proyecto está bajo la Licencia GPL3. Puedes ver más detalles en el archivo [LICENSE](LICENSE).
-
----
-
-¡Espero que este README te sea útil! Si tienes alguna pregunta, no dudes en preguntar.
