@@ -1,7 +1,3 @@
-Aquí tienes un README para el proyecto de una API que usa las tecnologías TypeScript, Mongoose, MongoDB, Docker y Express. El README describe el repositorio y la estructura del proyecto, así como las funcionalidades de la API.
-
----
-
 # Juego de Preguntas y Respuestas API
 
 Este es un proyecto de API construido con **TypeScript**, **Mongoose**, **MongoDB**, **Docker** y **Express**. Esta API permite registrar usuarios, crear preguntas con múltiples respuestas posibles (incluyendo la respuesta correcta), y relacionar preguntas con usuarios y sus respuestas.
@@ -110,5 +106,3 @@ La API ofrece las siguientes funcionalidades:
 ## Licencia
 
 Este proyecto está bajo la [licencia GPL3](../LICENSE).
-
----

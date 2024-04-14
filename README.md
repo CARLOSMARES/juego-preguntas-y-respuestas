@@ -1,6 +1,4 @@
-Aquí tienes un ejemplo de README para el proyecto que utiliza Angular para el frontend, Node.js con Express para el backend, MongoDB para la base de datos, y Docker con Docker Compose:
-
----
+# Este proyecto es creado para ["La Hackaton Del Dev"](https://www.lahackathondeldev.com/)
 
 # Juego de Preguntas y Respuestas
 
