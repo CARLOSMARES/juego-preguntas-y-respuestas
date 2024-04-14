@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
 
+import { IQuestion } from '../interfaces/IQuestion';
+import { IUser } from '../interfaces/IUser';
+import { IUserQuestionRelation, UserQuestionRelationDocument } from '../interfaces/IUserQuestionRelation';
+
 // Definición de esquemas utilizando mongoose.Schema
 const userSchema = new mongoose.Schema({
     user_id: {
@@ -76,16 +80,6 @@ const userQuestionRelationSchema = new mongoose.Schema({
         ref: 'Question',
         required: true,
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    question: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Question',
-        required: true,
-    },
 });
 
 // Creación de modelos a partir de los esquemas
@@ -93,7 +87,7 @@ const User = mongoose.model('User', userSchema);
 const Question = mongoose.model('Question', questionSchema);
 const UserQuestionRelation = mongoose.model('UserQuestionRelation', userQuestionRelationSchema);
 
-// Clase config con métodos relacionados con la base de datos
+// Clase Config con métodos relacionados con la base de datos
 export class Config {
     dbUri = process.env.MONGODB_URI;
 
@@ -147,76 +141,82 @@ export class Config {
 
     public async createDatabase() {
         try {
-            // Si las colecciones ya existen, no es necesario crearlas de nuevo
-            if (mongoose.connection.collections['users']) {
-                console.log('Collection users already exists');
-            } else {
-                await mongoose.connection.db.createCollection('users', {
-                    validator: {
-                        $jsonSchema: {
-                            bsonType: 'object',
-                            required: ['user_id', 'user_firstname', 'user_lastname', 'user_nickname', 'user_birthday', 'user_password'],
-                            properties: {
-                                user_id: { bsonType: 'string' },
-                                user_firstname: { bsonType: 'string' },
-                                user_lastname: { bsonType: 'string' },
-                                user_nickname: { bsonType: 'string' },
-                                user_birthday: { bsonType: 'date' },
-                                user_password: { bsonType: 'string' },
-                            }
-                        }
-                    }
-                });
-                console.log('Created collection users');
+            const db = mongoose.connection.db;
+
+            // Crea la colección 'users' si no existe
+            if (!db.collection('users')) {
+                await db.createCollection('users');
+                console.log('Colección "users" creada con éxito');
             }
 
-            if (mongoose.connection.collections['questions']) {
-                console.log('Collection questions already exists');
-            } else {
-                await mongoose.connection.db.createCollection('questions', {
-                    validator: {
-                        $jsonSchema: {
-                            bsonType: 'object',
-                            required: ['question_id', 'question_text', 'question_request_1', 'question_request_2', 'question_request_3', 'question_request_4', 'question_request_5', 'question_request_correct'],
-                            properties: {
-                                question_id: { bsonType: 'string' },
-                                question_text: { bsonType: 'string' },
-                                question_request_1: { bsonType: 'string' },
-                                question_request_2: { bsonType: 'string' },
-                                question_request_3: { bsonType: 'string' },
-                                question_request_4: { bsonType: 'string' },
-                                question_request_5: { bsonType: 'string' },
-                                question_request_correct: { bsonType: 'string' },
-                            }
-                        }
-                    }
-                });
-                console.log('Created collection questions');
+            // Crea la colección 'questions' si no existe
+            if (!db.collection('questions')) {
+                await db.createCollection('questions');
+                console.log('Colección "questions" creada con éxito');
             }
 
-            if (mongoose.connection.collections['userquestionrelation']) {
-                console.log('Collection userquestionrelation already exists');
-            } else {
-                await mongoose.connection.db.createCollection('userquestionrelation', {
-                    validator: {
-                        $jsonSchema: {
-                            bsonType: 'object',
-                            required: ['user_id', 'question_id', 'user', 'question'],
-                            properties: {
-                                user_id: { bsonType: 'objectId' },
-                                question_id: { bsonType: 'objectId' },
-                                user: { bsonType: 'objectId' },
-                                question: { bsonType: 'objectId' },
-                            }
-                        }
-                    }
-                });
-                console.log('Created collection userquestionrelation');
+            // Crea la colección 'userquestionrelation' si no existe
+            if (!db.collection('userquestionrelation')) {
+                await db.createCollection('userquestionrelation');
+                console.log('Colección "userquestionrelation" creada con éxito');
             }
 
-            console.log('Database setup complete');
+            console.log('Todas las colecciones creadas con éxito');
         } catch (error) {
-            console.error('Error creating database:', error);
+            console.error('Error creando la base de datos:', error);
+            throw error;
+        }
+    }
+
+    public async createUser(user: IUser): Promise<IUser> {
+        try {
+            const newUser = new User(user);
+            await newUser.save();
+            return newUser;
+        } catch (error) {
+            console.error('Error creating the user:', error);
+            throw error;
+        }
+    }
+    
+    public async createQuestion(question: IQuestion): Promise<IQuestion> {
+        try {
+            const newQuestion = new Question(question);
+            await newQuestion.save();
+            return newQuestion;
+        } catch (error) {
+            console.error('Error creating the question:', error);
+            throw error;
+        }
+    }
+
+    public async createUserQuestionRelation(userQuestionRelation: IUserQuestionRelation): Promise<UserQuestionRelationDocument> {
+        try {
+            const newUserQuestionRelation = new UserQuestionRelation(userQuestionRelation);
+            await newUserQuestionRelation.save();
+            return newUserQuestionRelation as unknown as UserQuestionRelationDocument;
+        } catch (error) {
+            console.error('Error creating the user-question relation:', error);
+            throw error;
+        }
+    }
+    
+    
+    public async getAllUsers() {
+        try {
+            const users = await User.find();
+            return users;
+        } catch (error) {
+            console.error('Error al obtener todos los usuarios:', error);
+            throw error;
+        }
+    }
+    public async getAllQuestions() {
+        try {
+            const questions = await Question.find();
+            return questions;
+        } catch (error) {
+            console.error('Error al obtener todas las preguntas:', error);
             throw error;
         }
     }
