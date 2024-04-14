@@ -28,12 +28,14 @@ El repositorio del proyecto está alojado en GitHub: [CARLOSMARES/juego-pregunta
 ## Instalación
 
 1. Clona este repositorio:
+
     ```bash
     git clone https://github.com/CARLOSMARES/juego-preguntas-y-respuestas.git
     cd juego-preguntas-y-respuestas
     ```
 
 2. Instala las dependencias:
+
     ```bash
     npm install
     ```
@@ -41,6 +43,7 @@ El repositorio del proyecto está alojado en GitHub: [CARLOSMARES/juego-pregunta
 ## Configuración
 
 1. Crea un archivo `.env` en la raíz del proyecto y define las siguientes variables de entorno:
+
     ```env
     PORT=3000
     MONGO_URI=mongodb://localhost:27017/nombre-base-de-datos
@@ -53,6 +56,7 @@ El repositorio del proyecto está alojado en GitHub: [CARLOSMARES/juego-pregunta
 1. **Localmente**:
 
     Inicia el servidor localmente:
+
     ```bash
     npm run start
     ```
@@ -60,6 +64,7 @@ El repositorio del proyecto está alojado en GitHub: [CARLOSMARES/juego-pregunta
 2. **Con Docker**:
 
     Ejecuta el script `docker.sh` para levantar las imágenes de Docker:
+
     ```bash
     ./docker.sh
     ```
@@ -104,6 +109,6 @@ La API ofrece las siguientes funcionalidades:
 
 ## Licencia
 
-Este proyecto está bajo la [licencia GPL3](LICENSE).
+Este proyecto está bajo la [licencia GPL3](../LICENSE).
 
 ---
