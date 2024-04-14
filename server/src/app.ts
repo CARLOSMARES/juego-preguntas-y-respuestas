@@ -75,6 +75,36 @@ Router.get("/questions", async (req: Request, res: Response) => {
     }
 });
 
+Router.post("/users", async (req: Request, res: Response) => {
+    try {
+        const user = await conf.createUser(req.body).then(user => user);
+        res.json(user);
+    } catch (error) {
+        console.error("Error al crear el usuario:", error);
+        res.status(500).send("Error al crear el usuario");
+    }
+});
+
+Router.post("/questions", async (req: Request, res: Response) => {
+    try {
+        const question = await conf.createQuestion(req.body).then(question => question);
+        res.json(question);
+    } catch (error) {
+        console.error("Error al crear la pregunta:", error);
+        res.status(500).send("Error al crear la pregunta");
+    }
+});
+
+Router.post("/userquestionrelation", async (req: Request, res: Response) => {
+    try {
+        const userQuestionRelation = await conf.createUserQuestionRelation(req.body).then(userQuestionRelation => userQuestionRelation);
+        res.json(userQuestionRelation);
+    } catch (error) {
+        console.error("Error al crear la relación entre usuario y pregunta:", error);
+        res.status(500).send("Error al crear la relación entre usuario y pregunta");
+    }
+});
+
 // Conexión a la base de datos y configuración del servidor
 conf.connectToDatabase()
     .then(() => {
