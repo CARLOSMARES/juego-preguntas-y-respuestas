@@ -13,7 +13,6 @@ module.exports = function (app) {
         .get(questions.ListarTodasLasPreguntas)
         .post(questions.crearPregunta);
     app.route('/api/questions/:questionId')
-        .get(questions.ObtenerUnaPregunta)
         .put(questions.actualizarPregunta)
         .delete(questions.borrarPregunta);
     //app.route('/api/users/:nickName/questions')

@@ -1,5 +1,5 @@
 var mongose = require('mongoose');
-var User = mongose.model('User');
+var User = mongose.model('users');
 exports.ListarTododosLosUsuarios = function (req, res) {
     User.find(function (err, users) {
         if (err) {
