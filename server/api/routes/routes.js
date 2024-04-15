@@ -3,7 +3,7 @@ module.exports = function (app) {
     var users = require('../controllers/UserController');
     var questions = require('../controllers/QuestionController');
     app.route('/api/users')
-        .get(users.ListarTododosLosUsuarios)
+        .get(users.ListarTodosLosUsuarios)
         .post(users.crearUsuario);
     app.route('/api/users/:nickName')
         .get(users.ObtenerUnUsuario)
