@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-Questions = new Schema({
+var Questions = new Schema({
     question: {
         type: String,
         required: true
@@ -29,5 +29,5 @@ Questions = new Schema({
         type: String,
         required: true
     }
-})
+});
 module.exports = mongoose.model('Questions', Questions)

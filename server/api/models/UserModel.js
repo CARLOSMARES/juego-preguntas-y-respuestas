@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-Usuarios = new Schema({
+
+var Usuarios = new Schema({
     firstname: {
         type: String,
         required: true
@@ -29,13 +30,22 @@ Usuarios = new Schema({
         type: String,
         required: true
     },
-    response: {
-        type: String,
-        required: true
-    },
-    question: {
-        type: String,
-        required: true
+    gamequestions: {
+        type: [
+            {
+                question: {
+                    type: String,
+                    required: true
+                },
+                response: {
+                    type: String,
+                    required: true
+                }
+            }
+        ],
+        required: true,
+        default: []
     }
-})
+});
+
 module.exports = mongoose.model('users', Usuarios);
